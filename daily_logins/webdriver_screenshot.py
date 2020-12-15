@@ -77,7 +77,12 @@ class WebDriverScreenshot:
         chrome_options.add_argument('--homedir={}'.format(self._tmp_folder))
         chrome_options.add_argument('--disk-cache-dir={}'.format(self._tmp_folder + '/cache-dir'))
 
-        chrome_options.binary_location = "/opt/bin/chromium" 
+        #chrome_options.binary_location = "/opt/bin/chromium"
+        chrome_options.binary_location = "./headless-chromium"
+
+        print("Headless Path", os.path.abspath(chrome_options.binary_location))
+
+        print(chrome_options)
 
         return chrome_options      
 
@@ -88,6 +93,7 @@ class WebDriverScreenshot:
         driver.get(url)
         height = driver.execute_script("return Math.max( document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight )")
         driver.quit()
+        print("HEIGHT", height)
         return height
 
     def save_screenshot(self, filename, width=1280, height=None):
@@ -99,7 +105,7 @@ class WebDriverScreenshot:
         chrome_options.add_argument('--hide-scrollbars')
 
         # browser = webdriver.Firefox(executable_path=r'./geckodriver.exe')
-        driver = webdriver.Chrome(executable_path=r'./chromedriver_linux64', chrome_options=chrome_options)
+        driver = webdriver.Chrome(chrome_options=chrome_options)
         logger.info('Using Chromium version: {}'.format(driver.capabilities['browserVersion']))
         #driver.get(url)
         driver.save_screenshot(filename)
