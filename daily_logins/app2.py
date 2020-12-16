@@ -1,17 +1,22 @@
 import json
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+import os
 
 
 def do_capture():
+
+    print("HEADLESS", os.path.abspath('./bin/headless-chromium'))
+    print("CHROMEDRIVER", os.path.abspath('./bin/chromedriver'))
+
     options = Options()
-    options.binary_location = '/bin/headless-chromium'
+    options.binary_location = './bin/headless-chromium'
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument('--single-process')
     options.add_argument('--disable-dev-shm-usage')
 
-    driver = webdriver.Chrome('/bin/chromedriver', chrome_options=options)
+    driver = webdriver.Chrome('./bin/chromedriver', chrome_options=options)
 
     driver.get('https://www.google.com/')
     body = f"Headless Chrome Initialized, Page title: {driver.title}"
