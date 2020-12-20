@@ -99,3 +99,16 @@ python app3.py
 ```
 sudo apt install chromium-chromedriver
 ```
+
+
+## ???
+```
+sudo python3
+subprocess.Popen('apt-get install -y libnss3', shell=True, stdin=None, stdout=None, stderr=None)
+```
+
+# Trying
+```
+apt install libglib2.0-bin
+apt install chromium
+```
