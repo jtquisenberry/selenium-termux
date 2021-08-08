@@ -78,7 +78,9 @@ class WebDriverScreenshot:
         chrome_options.add_argument('--disk-cache-dir={}'.format(self._tmp_folder + '/cache-dir'))
 
         #chrome_options.binary_location = "/opt/bin/chromium"
-        chrome_options.binary_location = "./headless-chromium"
+        #chrome_options.binary_location = "../bin/headless-chromium"
+        chrome_options.binary_location = "../bin/chromedriver"
+
 
         print("Headless Path", os.path.abspath(chrome_options.binary_location))
 
